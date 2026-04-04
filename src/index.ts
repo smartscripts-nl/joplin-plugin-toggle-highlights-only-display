@@ -1,36 +1,67 @@
 import joplin from 'api';
-import {ContentScriptType, ToolbarButtonLocation } from 'api/types';
+import {ContentScriptType, ToolbarButtonLocation} from 'api/types';
 
-let highlightMode = false;
+let scriptIndex = 1;
 
 joplin.plugins.register({
-	onStart: async function () {
+    onStart: async function () {
 
-		//* Toggle highlight view command
-		await joplin.commands.register({
-			name: 'toggleHighlightView',
-			label: 'Toggle highlights-only view',
-			iconName: 'fa fa-eye',
-			execute: async () => {
-				highlightMode = !highlightMode;
+        // --- CSS laden via Joplin note stylesheet ---
+        const installDir = await joplin.plugins.installationDir();
+        const noteCssFilePath = installDir + '/highlights.css';
+        await (joplin as any).window.loadNoteCssFile(noteCssFilePath);
 
-				// Stuur toggle naar viewer
-				await joplin.commands.execute('webviewApi.postMessage', {
-					name: 'highlightToggle',
-					message: highlightMode,
-				});
-			},
-		});
+        // --- Settings voor toggle ---
+        await joplin.settings.registerSection('highlightSection', {
+            label: 'Highlight plugin',
+            iconName: 'fas fa-highlighter'
+        });
 
-		//* Toolbar knop toevoegen
-		await joplin.views.toolbarButtons.create('toggleHighlightButton', 'toggleHighlightView', ToolbarButtonLocation.NoteToolbar);
-		//await joplin.views.toolbarButtons.create('myButton2', 'testCommand2', ToolbarButtonLocation.EditorToolbar);
+        await joplin.settings.registerSettings({
+            highlightsOnlyMode: {
+                value: false,
+                type: 3, // boolean
+                section: 'highlightSection',
+                public: false,
+                label: 'Highlight mode'
+            }
+        });
 
-		//* Content script registreren
-		await joplin.contentScripts.register(
-			ContentScriptType.MarkdownItPlugin,
-			'highlightView',
-			'./contentScript.js'
-		);
-	},
+        // --- Toolbar command ---
+        await joplin.commands.register({
+            name: 'toggleHighlightView',
+            label: 'Toggle highlights-only view',
+            iconName: 'fa fa-eye',
+            execute: async () => {
+                const current = await joplin.settings.value('highlightsOnlyMode');
+                const newValue = !current;
+                await joplin.settings.setValue('highlightsOnlyMode', newValue);
+
+                if (newValue) {
+                    alert("\nENKEL MARKERINGEN...\n")
+                    await joplin.contentScripts.register(
+                        ContentScriptType.MarkdownItPlugin,
+                        'highlightView' + scriptIndex,
+                        './contentScript.js'
+                    );
+                }
+                else {
+                    //alert("\nHELE TEKST...\n")
+                    await joplin.contentScripts.register(
+                        ContentScriptType.MarkdownItPlugin,
+                        'highlightViewUndo' + scriptIndex,
+                        './contentScriptUndo.js'
+                    );
+                }
+                scriptIndex = scriptIndex + 1;
+            }
+        });
+
+        // --- Toolbar knop ---
+        await joplin.views.toolbarButtons.create(
+            'toggleHighlightButton',
+            'toggleHighlightView',
+            ToolbarButtonLocation.NoteToolbar
+        );
+    }
 });

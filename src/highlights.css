@@ -1,23 +1,39 @@
-/* Only highlights visible: */
-body.highlight-only * {
-  visibility: hidden;
+.highlights-only p {
+    visibility: hidden;
 }
 
-body.highlight-only mark,
-body.highlight-only mark * {
-  visibility: visible;
+.highlights-only mark,
+.highlights-only mark * {
+    visibility: visible !important;
 }
 
-body.highlight-only mark {
-  display: block;      /* elke mark op nieuwe regel */
-  margin: 0;           /* marge via pseudo-element */
-  padding: 0.1em 0.2em;
-  border-radius: 2px;
+.highlights-only p:not(:has(mark)) {
+  display: none;
 }
 
-/* witregel tussen markeringen */
-body.highlight-only mark::after {
-  content: "";
-  display: block;
-  height: 1em; /* height of separating line */
+.highlights-only p:has(mark) {
+  margin: 1em .8em;
 }
+
+.highlights-only mark {
+    display: block;
+    border-radius: 4px;
+    padding: .5em;
+}
+
+.highlights-only span.hide-around-highlight {
+    display: none;
+}
+
+/* 🔶 Status indicator */
+/*.highlights-only::before {
+    content: "🔍 enkel markeringen weergegeven...";
+    display: block;
+    background: orange;
+    color: black;
+    padding: 4px 8px;
+    font-weight: bold;
+    margin-bottom: 11px;
+    text-align: center;
+    border-radius: 4px;
+}*/
