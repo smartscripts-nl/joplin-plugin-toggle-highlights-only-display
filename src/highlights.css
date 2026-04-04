@@ -1,0 +1,23 @@
+/* Only highlights visible: */
+body.highlight-only * {
+  visibility: hidden;
+}
+
+body.highlight-only mark,
+body.highlight-only mark * {
+  visibility: visible;
+}
+
+body.highlight-only mark {
+  display: block;      /* elke mark op nieuwe regel */
+  margin: 0;           /* marge via pseudo-element */
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+}
+
+/* witregel tussen markeringen */
+body.highlight-only mark::after {
+  content: "";
+  display: block;
+  height: 1em; /* height of separating line */
+}
