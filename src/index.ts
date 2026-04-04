@@ -9,12 +9,13 @@ joplin.plugins.register({
 		//* Toggle highlight view command
 		await joplin.commands.register({
 			name: 'toggleHighlightView',
-			label: 'Toggle highlight view',
+			label: 'Toggle highlights-only view',
+			iconName: 'fa fa-eye',
 			execute: async () => {
 				highlightMode = !highlightMode;
 
 				// Stuur toggle naar viewer
-				await joplin.commands.execute('webview.postMessage', {
+				await joplin.commands.execute('webviewApi.postMessage', {
 					name: 'highlightToggle',
 					message: highlightMode,
 				});
