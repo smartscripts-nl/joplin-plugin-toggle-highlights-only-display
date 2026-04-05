@@ -19,6 +19,14 @@
     display: block;
     border-radius: 4px;
     padding: .5em;
+    background: transparent;
+    /*border: 2px solid orange;*/
+    color: rgb(254, 235, 201);
+}
+
+.highlights-only mark a {
+    color: orange;
+    font-weight: normal;
 }
 
 .highlights-only span.hide-around-highlight {
@@ -26,7 +34,7 @@
 }
 
 /* 🔶 Status indicator */
-/*.highlights-only::before {
+.highlights-only::before {
     content: "🔍 enkel markeringen weergegeven...";
     display: block;
     background: orange;
@@ -36,4 +44,4 @@
     margin-bottom: 11px;
     text-align: center;
     border-radius: 4px;
-}*/
+}
