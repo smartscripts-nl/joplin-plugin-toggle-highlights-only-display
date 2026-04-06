@@ -1,0 +1,6 @@
+{
+	"extraScripts": [
+		"highlightsOnly.ts",
+		"highlightsOnlyUndo.ts"
+	]
+}
