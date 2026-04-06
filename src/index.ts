@@ -15,7 +15,7 @@ joplin.plugins.register({
 
         // --- Settings voor toggle ---
         await joplin.settings.registerSection('highlightsOnlyDisplaySection', {
-            label: 'Highlight-only toggler',
+            label: 'Highlights-only toggler',
             iconName: 'fa fa-eye',
             description: 'Changes in the below settings will only come into effect after restarting Joplin.'
         });
