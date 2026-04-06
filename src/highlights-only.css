@@ -20,7 +20,6 @@
     border-radius: 4px;
     padding: .5em;
     background: transparent;
-    /*border: 2px solid orange;*/
     color: rgb(254, 235, 201);
 }
 
@@ -35,7 +34,7 @@
 
 /* 🔶 Status indicator */
 .highlights-only::before {
-    content: "🔍 enkel markeringen weergegeven...";
+    content: "🖍️️ enkel markeringen weergegeven...";
     display: block;
     background: orange;
     color: black;

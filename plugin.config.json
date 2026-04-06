@@ -1,6 +1,6 @@
 {
 	"extraScripts": [
-		"contentScript.ts",
-		"contentScriptUndo.ts"
+		"highlightsOnly.ts",
+		"highlightsOnlyUndo.ts"
 	]
 }
