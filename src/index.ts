@@ -15,7 +15,7 @@ joplin.plugins.register({
 
         // --- Settings voor toggle ---
         await joplin.settings.registerSection('highlightsOnlyDisplaySection', {
-            label: 'Highlight plugin',
+            label: 'Highlights-only toggler',
             iconName: 'fa fa-eye',
             description: 'Changes in the below settings will only come into effect after restarting Joplin.'
         });
@@ -55,7 +55,7 @@ joplin.plugins.register({
                 type: SettingItemType.String,
                 section: 'highlightsOnlyDisplaySection',
                 public: true,
-                label: 'Message upon highlights-mode activation',
+                label: 'Message upon highlights-only mode activation',
             }
         });
         await joplin.settings.registerSettings({
@@ -64,7 +64,7 @@ joplin.plugins.register({
                 type: SettingItemType.String,
                 section: 'highlightsOnlyDisplaySection',
                 public: true,
-                label: 'Message upon highlights-mode de-activation'
+                label: 'Message upon highlights-only mode de-activation'
             }
         });
 

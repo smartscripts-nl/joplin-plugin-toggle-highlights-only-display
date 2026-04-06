@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "keywords": [
-    "joplin-plugin"
+    "joplin-plugin", "highlights-only-display"
   ],
   "files": [
     "publish"

@@ -34,9 +34,9 @@
 
 /* 🔶 Status indicator */
 .highlights-only::before {
-    content: "🖍️️ enkel markeringen weergegeven...";
+    content: "🖍️️ highlights-only mode activated...";
     display: block;
-    background: orange;
+    background: yellow;
     color: black;
     padding: 4px 8px;
     font-weight: bold;
