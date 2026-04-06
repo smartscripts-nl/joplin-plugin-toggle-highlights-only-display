@@ -3,7 +3,7 @@
 * With the eye-button which this plugin adds to the Joplin notebar, you can toggle between highlights-only display, or display of the entire note text.
 * If a note doesn't contain any highlights at all, the note text will always be shown, even when highlights-only mode should be enabled.
 * The plugin has a section in the Joplin settings, _Hilights-only toggler_.
-* **Alas, when you en- or disable highlights-only display, you first have to visit another note, beforce the new display mode comes into effect.** This seems to be a Joplin limitation.
+* **Alas, when you en- or disable highlights-only display, you first have to visit another note, before the new display mode comes into effect.** This seems to be a Joplin limitation.
 * The plugin uses custom CSS for displaying the highlights-only mode:
 ```
 .highlights-only p {
