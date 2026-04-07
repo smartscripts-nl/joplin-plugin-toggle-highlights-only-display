@@ -107,32 +107,20 @@ joplin.plugins.register({
                 enabled = !enabled;
                 await joplin.settings.setValue('highlightsOnlyMode', enabled);
 
-                if (enabled) {
-                    await joplin.contentScripts.register(
-                        ContentScriptType.MarkdownItPlugin,
-                        'highlightView' + scriptIndex,
-                        './highlightsOnly.js'
-                    );
-                    const toastMessage = await joplin.settings.value('activatedMessage');
+                const script = enabled ? './highlightsOnly.js' : './highlightsOnlyUndo.js';
+                const message = enabled ? await joplin.settings.value('activatedMessage') : await joplin.settings.value('deactivatedMessage');
+                await joplin.contentScripts.register(
+                    ContentScriptType.MarkdownItPlugin,
+                    'highlightView' + scriptIndex,
+                    script
+                );
+                if (message !== "") {
+                    const type = enabled ? ToastType.Success : ToastType.Error;
                     await dialogs.showToast({
-                        type: ToastType.Success,
-                        message: toastMessage,
+                        type: type,
+                        message: message,
                         duration: alert_duration,
                     });
-                }
-                else {
-                    await joplin.contentScripts.register(
-                        ContentScriptType.MarkdownItPlugin,
-                        'highlightViewUndo' + scriptIndex,
-                        './highlightsOnlyUndo.js'
-                    );
-                    const toastMessage = await joplin.settings.value('deactivatedMessage');
-                    await dialogs.showToast({
-                        type: ToastType.Error,
-                        message: toastMessage,
-                        duration: alert_duration,
-                    });
-
                 }
                 scriptIndex = scriptIndex + 1;
 
