@@ -1,12 +1,3 @@
-.highlights-only p, .highlights-only li {
-    visibility: hidden;
-}
-
-.highlights-only mark,
-.highlights-only mark * {
-    visibility: visible !important;
-}
-
 .highlights-only p:not(:has(mark)), .highlights-only li:not(:has(mark)) {
   display: none;
 }
@@ -17,6 +8,8 @@
 
 .highlights-only li:has(mark) p {
     margin: 0;
+    padding: 0;
+    text-indent: 0;
 }
 
 .highlights-only li:has(mark) {
@@ -31,6 +24,10 @@
     color: rgb(254, 235, 201);
 }
 
+.highlights-only li mark {
+    display: inline-block;
+}
+
 .highlights-only mark a {
     color: orange;
     font-weight: normal;
@@ -40,7 +37,7 @@
     display: none;
 }
 
-/* 🔶 Status indicator */
+/* Status indicator */
 .highlights-only::before {
     content: "🖍️️ highlights-only mode activated...";
     display: block;
