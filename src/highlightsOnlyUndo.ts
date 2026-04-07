@@ -18,7 +18,7 @@ module.exports = {
                         .replace(/<\/div>$/, '')
                         .replace(/<span class="hide-around-highlight">/g, '')
                         .replace(/<\/span><mark/g, '<mark')
-                        .replace(/<\/span><\/p>/g, '</p>');
+                        .replace(/<\/span><\/(p|li)>/g, '</$1>');
 
                     return html;
                 };

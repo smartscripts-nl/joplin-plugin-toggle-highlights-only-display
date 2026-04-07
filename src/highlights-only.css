@@ -1,4 +1,4 @@
-.highlights-only p {
+.highlights-only p, .highlights-only li {
     visibility: hidden;
 }
 
@@ -7,12 +7,20 @@
     visibility: visible !important;
 }
 
-.highlights-only p:not(:has(mark)) {
+.highlights-only p:not(:has(mark)), .highlights-only li:not(:has(mark)) {
   display: none;
 }
 
 .highlights-only p:has(mark) {
   margin: 1em .8em;
+}
+
+.highlights-only li:has(mark) p {
+    margin: 0;
+}
+
+.highlights-only li:has(mark) {
+    list-style: inside;
 }
 
 .highlights-only mark {
