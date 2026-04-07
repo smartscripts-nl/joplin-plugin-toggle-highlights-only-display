@@ -49,6 +49,7 @@ joplin.plugins.register({
                 description: 'If enabled, in highlights-only display mode headings will be hidden also.'
             }
         });
+        const noTextInfo = 'If no text given, no message will be shown.'
         await joplin.settings.registerSettings({
             activatedMessage: {
                 value: 'highlights-only mode ACTIVATED (this will only become visible upon visiting another note)',
@@ -56,6 +57,7 @@ joplin.plugins.register({
                 section: 'highlightsOnlyDisplaySection',
                 public: true,
                 label: 'Message upon highlights-only mode activation',
+                description: noTextInfo
             }
         });
         await joplin.settings.registerSettings({
@@ -64,7 +66,8 @@ joplin.plugins.register({
                 type: SettingItemType.String,
                 section: 'highlightsOnlyDisplaySection',
                 public: true,
-                label: 'Message upon highlights-only mode de-activation'
+                label: 'Message upon highlights-only mode de-activation',
+                description: noTextInfo
             }
         });
 
