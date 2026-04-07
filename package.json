@@ -1,6 +1,6 @@
 {
   "name": "joplin-plugin-toggle-highlights-only-display",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "dist": "webpack --env joplin-plugin-config=buildMain && webpack --env joplin-plugin-config=buildExtraScripts && webpack --env joplin-plugin-config=createArchive",
     "prepare": "npm run dist",
@@ -9,7 +9,8 @@
   },
   "license": "MIT",
   "keywords": [
-    "joplin-plugin", "highlights-only-display"
+    "joplin-plugin",
+    "highlights-only-display"
   ],
   "files": [
     "publish"

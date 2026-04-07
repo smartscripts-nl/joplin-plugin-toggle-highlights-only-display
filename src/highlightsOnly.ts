@@ -14,7 +14,7 @@ module.exports = {
                     }
 
                     html = html
-                        .replace(/<(p|li)>(.+?)<mark/g, '<$1><span class="hide-around-highlight">$2</span><mark')
+                        .replace(/<(p|li)([^>]*)>(.+?)<mark/g, '<$1$2><span class="hide-around-highlight">$3</span><mark')
                         .replace(/<\/mark>(.+?)<\/(p|li)>/g, '</mark><span class="hide-around-highlight">$1</span></$2>')
 
                     html = "<div class='highlights-only'>" + html + "</div>";
