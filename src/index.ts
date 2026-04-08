@@ -50,6 +50,16 @@ joplin.plugins.register({
             }
         });
         await joplin.settings.registerSettings({
+            hideImages: {
+                value: true,
+                type: SettingItemType.Bool,
+                section: 'highlightsOnlyDisplaySection',
+                public: true,
+                label: 'Hide images in higlights-only display mode',
+                description: 'If enabled, in highlights-only display mode images will be hidden also.'
+            }
+        });
+        await joplin.settings.registerSettings({
             refreshEditor: {
                 value: true,
                 type: SettingItemType.Bool,
@@ -93,6 +103,11 @@ joplin.plugins.register({
         if (hideHeadings) {
             const hideHeadingsFilePath = installDir + '/hide-headings.css';
             await (joplin as any).window.loadNoteCssFile(hideHeadingsFilePath);
+        }
+        const hideImages = await joplin.settings.value('hideImages');
+        if (hideImages) {
+            const hideImagesFilePath = installDir + '/hide-images.css';
+            await (joplin as any).window.loadNoteCssFile(hideImagesFilePath);
         }
 
         let enabled = await joplin.settings.value('highlightsOnlyMode');
