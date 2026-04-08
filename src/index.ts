@@ -49,10 +49,20 @@ joplin.plugins.register({
                 description: 'If enabled, in highlights-only display mode headings will be hidden also.'
             }
         });
+        await joplin.settings.registerSettings({
+            refreshEditor: {
+                value: true,
+                type: SettingItemType.Bool,
+                section: 'highlightsOnlyDisplaySection',
+                public: true,
+                label: 'Refresh Html Viewer upon mode change',
+                description: 'If enabled, after a mode change the editor will be refreshed. This is a workaround to get the Html Viewer/Editor to update after a mode change. If you mainly work in the markdown editor, you could disable this, for more fluid mode change.'
+            }
+        });
         const noTextInfo = 'If no text given, no message will be shown.'
         await joplin.settings.registerSettings({
             activatedMessage: {
-                value: 'highlights-only mode ACTIVATED (this will only become visible upon visiting another note)',
+                value: 'highlights-only mode ACTIVATED',
                 type: SettingItemType.String,
                 section: 'highlightsOnlyDisplaySection',
                 public: true,
@@ -62,7 +72,7 @@ joplin.plugins.register({
         });
         await joplin.settings.registerSettings({
             deactivatedMessage: {
-                value: 'highlights-only mode DE-ACTIVATED (this will only become visible upon visiting another note)',
+                value: 'highlights-only mode DE-ACTIVATED',
                 type: SettingItemType.String,
                 section: 'highlightsOnlyDisplaySection',
                 public: true,
@@ -127,15 +137,12 @@ joplin.plugins.register({
                 }
                 scriptIndex = scriptIndex + 1;
 
-                /*const noteIds = await joplin.workspace.selectedNoteIds();
-                const noteId = noteIds.length === 1 ? noteIds[0] : null;
-                if (noteId) {
-                    const note = await joplin.data.get(['notes', noteId], {fields: ['body']});
-                    //await joplin.data.put(['notes', noteId], null, {body: note.body});
-                    // dit vernietigt de hele tekst van de notitie:
-                    await joplin.commands.execute("textSelectAll");
-                    await joplin.commands.execute("replaceSelection", note.body);
-                }*/
+                //* this setting is especially relevant for the Html Viewer (otherwise we would first have to navigate to another note and back, to see the changed mode):
+                const refreshEditor = await joplin.settings.value('refreshEditor');
+                if (refreshEditor) {
+                    await joplin.commands.execute('toggleEditors');
+                    await joplin.commands.execute('toggleEditors');
+                }
            }
         });
 
