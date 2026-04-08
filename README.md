@@ -57,4 +57,66 @@
     border-radius: 4px;
 }
 ```
-* You can override this CSS by placing a stylesheet highlights-only.css in the Joplin settings folder, in which you override the above CSS.
+* You can override this CSS by placing a stylesheet highlights-only.css in the Joplin settings folder, in which you override the above CSS. See below as an example my personal custom CSS, to show the highlighted texts in orange "text balloons":
+```
+.highlights-only p:not(:has(mark)), .highlights-only li:not(:has(mark)) {
+  display: none;
+}
+
+.highlights-only p:has(mark) {
+  margin: 1em .8em;
+}
+
+.highlights-only li:has(mark) {
+  padding: 0;
+  margin: 0;
+  list-style: inside;
+  text-indent: 0;
+}
+
+.highlights-only li:has(mark) p {
+    margin: 0;
+    padding: 0;
+    text-indent: 0;
+}
+
+.highlights-only li::before {
+    content: none !important;
+    padding-right: 0 !important;
+    width: 0 !important;
+}
+
+.highlights-only mark {
+    display: block;
+    border-radius: 4px;
+    padding: .5em;
+    background: orange;
+    color: black;
+}
+
+.highlights-only li mark {
+    display: inline-block;
+}
+
+.highlights-only mark a {
+    color: maroon;
+    font-weight: normal;
+}
+
+.highlights-only span.hide-around-highlight {
+    display: none;
+}
+
+/* Status indicator */
+.highlights-only::before {
+    content: none; /* or e.g.: content: "🖍️ highlights-only mode activated...";*/
+    display: inline;
+    background: yellow;
+    color: black;
+    padding: 0;
+    font-weight: bold;
+    margin-bottom: 0;
+    text-align: center;
+    border-radius: 4px;
+}
+```
