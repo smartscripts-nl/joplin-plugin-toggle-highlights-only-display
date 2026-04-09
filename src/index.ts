@@ -113,11 +113,30 @@ async function registerHighlightsOnlySettings() {
             description: noTextInfo
         }
     });
+    await joplin.settings.registerSettings({
+        showHighlightsOnlyActivatedStatus: {
+            value: true,
+            type: SettingItemType.Bool,
+            section: 'highlightsOnlyDisplaySection',
+            public: true,
+            label: 'Show highlights-only activated status',
+            description: 'If you enable this setting, on pages without highlights, when highlights-only mode has been activated, that activated-status will be shown by a tooltip at the top of the note.'
+        }
+    });
 }
 
 async function loadHighlightsOnlyCSS() {
-    //* --- load CSS from Joplin note stylesheet ---
     const installDir = await joplin.plugins.installationDir();
+
+    //! here we load default CSS for .highlights-only-activated:
+    const showHighlightsOnlyModeActivated = await joplin.settings.value('showHighlightsOnlyActivatedStatus');
+    if (showHighlightsOnlyModeActivated) {
+        const showActivatedFilePath = installDir + '/show-highlights-only-activated.css';
+        await (joplin as any).window.loadNoteCssFile(showActivatedFilePath);
+    }
+
+    //* --- load CSS from custom user stylesheet highlights-only.css ---
+    //! in this user stylesheet you can overrule the lay-out of .highlights-only-activated:
     const noteCssFilePath = installDir + '/highlights-only.css';
     await (joplin as any).window.loadNoteCssFile(noteCssFilePath);
 

@@ -5,7 +5,7 @@
 * The plugin has a section in the Joplin settings, _Highlights-only toggler_.
 * In this settings section you can also define a hotkey for toggling the highlights-only display.
 * The plugin uses custom CSS for displaying the highlights-only mode:
-```
+```CSS
 .highlights-only p:not(:has(mark)), .highlights-only li:not(:has(mark)) {
   display: none;
 }
@@ -59,7 +59,7 @@
 }
 ```
 * You can override this CSS by placing a stylesheet highlights-only.css in the Joplin settings folder, in which you override the above CSS. See below as an example my personal custom CSS, to show the highlighted texts in orange "text balloons":
-```
+```CSS
 .highlights-only p:not(:has(mark)), .highlights-only li:not(:has(mark)) {
   display: none;
 }
@@ -117,6 +117,32 @@
     padding: 0;
     font-weight: bold;
     margin-bottom: 0;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.highlights-only-activated::before {
+    content: "🖍️️ enkel-markeringen modus geactiveerd (maar hieronder geen markeringen)...";
+    display: block;
+    background: lightblue;
+    color: black;
+    padding: 4px 8px;
+    font-weight: bold;
+    margin-bottom: 11px;
+    text-align: center;
+    border-radius: 4px;
+}
+```
+* In your custom stylesheet, you can also style the tooltip at the start of notes which don't have highlights. This is the default CSS for those tooltips:
+```CSS
+.highlights-only-activated::before {
+    content: "🖍️️ highlights-only mode activated (but current note has no highlights)...";
+    display: block;
+    background: lightblue;
+    color: black;
+    padding: 4px 8px;
+    font-weight: bold;
+    margin-bottom: 11px;
     text-align: center;
     border-radius: 4px;
 }

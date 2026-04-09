@@ -1,0 +1,11 @@
+.highlights-only-activated::before {
+    content: "🖍️️ highlights-only mode activated (but current note has no highlights)...";
+    display: block;
+    background: yellow;
+    color: black;
+    padding: 4px 8px;
+    font-weight: bold;
+    margin-bottom: 11px;
+    text-align: center;
+    border-radius: 4px;
+}
