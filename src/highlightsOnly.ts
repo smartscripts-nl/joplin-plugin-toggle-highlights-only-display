@@ -10,7 +10,10 @@ module.exports = {
 
                     //* if no mark elements present, no content change needed:
                     if (!html.includes('<mark')) {
-                        return html;
+                        if (html.includes("<div class='highlights-only-activated'>")) {
+                            return html;
+                        }
+                        return "<div class='highlights-only-activated'>" + html + '</div>';
                     }
 
                     html = html.replace(
