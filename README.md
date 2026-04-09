@@ -41,7 +41,7 @@
     font-weight: normal;
 }
 
-.highlights-only span.hide-around-highlight {
+.highlights-only span.hide-around-highlight, .highlights-only hr {
     display: none;
 }
 

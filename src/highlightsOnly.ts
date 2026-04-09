@@ -21,7 +21,14 @@ module.exports = {
                         /<(p|li)([^>]*)>([\s\S]*?)<\/\1>/g,
                         (match, tag, attrs, content) => {
 
-                            let newContent = content
+                            const inlineElements = [];
+                            let newContent = content.replace(/(<(a|em|i|b|strong|u)\b[^>]*>.*?<\/\2>|<(br|img)[^>]*>)/gi, match => {
+                                const key = `__ELEM_${inlineElements.length}__`;
+                                inlineElements.push(match);
+                                return key;
+                            });
+
+                            newContent = newContent
                                 //* BEFORE each <mark>:
                                 .replace(
                                     /([^<]*?)<mark/g,
@@ -32,6 +39,11 @@ module.exports = {
                                     /<\/mark>([^<]*?)(?=<mark|$)/g,
                                     '</mark><span class="hide-around-highlight">$1</span>'
                                 );
+
+                            inlineElements.forEach((anchorHtml, index) => {
+                                const key = `__ELEM_${index}__`;
+                                newContent = newContent.replace(key, anchorHtml);
+                            });
 
                             return `<${tag}${attrs}>${newContent}</${tag}>`;
                         }
