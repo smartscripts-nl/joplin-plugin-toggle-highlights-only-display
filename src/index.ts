@@ -69,7 +69,7 @@ async function registerHighlightsOnlySettings() {
             section: 'highlightsOnlyDisplaySection',
             public: true,
             label: 'Hotkey',
-            description: 'Don\'t enter a hotkey which is already being assigned to another Joplin or plugin command! If no string entered here, hotkey will be disabled.'
+            description: 'Don\'t enter a hotkey which has already been assigned to another Joplin or plugin command! If an invalid hotkey (no string, or length > 1) is entered here, hotkey will be disabled.'
         }
     });
     await joplin.settings.registerSettings({
@@ -160,9 +160,13 @@ async function loadHighlightsOnlyScripts() {
 }
 
 async function registerHighlightsOnlyToolbarButton(enabled: boolean) {
+    let accelerator = await getHighlightsOnlyHotKey();
+    if (accelerator !== "") {
+        accelerator = ' (' + accelerator + ')';
+    }
     await joplin.commands.register({
         name: 'toggleHighlightsOnlyView',
-        label: 'Toggle highlights-only view',
+        label: 'Toggle highlights-only view' + accelerator,
         iconName: 'fa fa-eye',
         execute: async () => {
             enabled = !enabled;
@@ -202,13 +206,21 @@ async function registerHighlightsOnlyToolbarButton(enabled: boolean) {
     );
 }
 
-async function registerHighlightsOnlyMenuItem() {
+async function getHighlightsOnlyHotKey() {
     let hotkey = await joplin.settings.value('highlightsOnlyHotkey');
     if (hotkey === "" || hotkey.length > 1) {
-        return;
+        return "";
     }
     hotkey = hotkey.toUpperCase();
     const alt = await joplin.settings.value('highlightsOnlyHotkeyAltEnabled') ? "+Alt" : "";
-    const accelerator = 'CmdOrCtrl' + alt + '+' + hotkey;
+    return 'CmdOrCtrl' + alt + '+' + hotkey;
+}
+
+async function registerHighlightsOnlyMenuItem() {
+    const accelerator = await getHighlightsOnlyHotKey();
+    if (accelerator === "") {
+        await joplin.views.menuItems.create('toggleHighlightsOnly', 'toggleHighlightsOnlyView', MenuItemLocation.Note);
+        return;
+    }
     await joplin.views.menuItems.create('toggleHighlightsOnly', 'toggleHighlightsOnlyView', MenuItemLocation.Note, {accelerator: accelerator});
 }
