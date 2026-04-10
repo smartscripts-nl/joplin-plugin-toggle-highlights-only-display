@@ -1,7 +1,8 @@
 # Toggle highlights-only display Plugin
 
 * With the eye-button which this plugin adds to the Joplin notebar, you can toggle between highlights-only display, or display of the entire note text.
-* If a note doesn't contain any highlights at all, the note text will always be shown, even when highlights-only mode should be enabled.
+* If a note doesn't contain any highlights at all, the note text will always be shown, even when has been enabled.
+* When a note only contains shorter highlights (i.e.: less than 20 characters), the note will be treated as having no highlights. This allows the user to emphasize words, without triggering highlights-only mode because of these highlights.
 * The plugin has a section in the Joplin settings, _Highlights-only toggler_.
 * In this settings section you can also define a hotkey for toggling the highlights-only display.
 * The plugin uses custom CSS for displaying the highlights-only mode:
@@ -47,7 +48,7 @@
 
 /* Status indicator */
 .highlights-only::before {
-    content: "🖍️️ highlights-only mode activated...";
+    content: "🖍️️ highlights-only mode enabled...";
     display: block;
     background: yellow;
     color: black;
@@ -110,9 +111,9 @@
 
 /* Status indicator */
 .highlights-only::before {
-    content: none; /* or e.g.: content: "🖍️ highlights-only mode activated...";*/
+    content: none; /* or e.g.: content: "🖍️ highlights-only mode enabled...";*/
     display: block;
-    background: yellow;
+    background: lightblue;
     color: black;
     padding: 0;
     font-weight: bold;
@@ -120,23 +121,11 @@
     text-align: center;
     border-radius: 4px;
 }
-
-.highlights-only-activated::before {
-    content: "🖍️️ enkel-markeringen modus geactiveerd (maar hieronder geen markeringen)...";
-    display: block;
-    background: lightblue;
-    color: black;
-    padding: 4px 8px;
-    font-weight: bold;
-    margin-bottom: 11px;
-    text-align: center;
-    border-radius: 4px;
-}
 ```
 * In your custom stylesheet, you can also style the tooltip at the start of notes which don't have highlights. This is the default CSS for those tooltips:
 ```CSS
-.highlights-only-activated::before {
-    content: "🖍️️ highlights-only mode activated (but current note has no highlights)...";
+.highlights-only-enabled::before {
+    content: "🖍️️ no (substantial) highlights below...";
     display: block;
     background: lightblue;
     color: black;

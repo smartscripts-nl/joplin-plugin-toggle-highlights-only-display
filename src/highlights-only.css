@@ -39,9 +39,9 @@
 
 /* Status indicator */
 .highlights-only::before {
-    content: "🖍️️ highlights-only mode activated...";
+    content: "🖍️️ highlights-only mode enabled...";
     display: block;
-    background: yellow;
+    background: lightblue;
     color: black;
     padding: 4px 8px;
     font-weight: bold;

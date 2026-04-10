@@ -1,3 +1,23 @@
+
+const minRequiredHighlightLength = 20;
+
+function checkHasSubstantialHighlights(html :string):boolean {
+    const regex = /<mark\b[^>]*>([\s\S]*?)<\/mark>/gi;
+
+    let match: string[];
+    while ((match = regex.exec(html)) !== null) {
+        const temp = document.createElement('div');
+        temp.innerHTML = match[1];
+        const text = temp.textContent?.trim() || '';
+
+        if (text.length >= minRequiredHighlightLength) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 module.exports = {
     default: function (context) {
         return {
@@ -9,11 +29,15 @@ module.exports = {
                     let html = defaultRender(tokens, options, env);
 
                     //* if no mark elements present, no content change needed:
-                    if (!html.includes('<mark')) {
-                        if (html.includes("<div class='highlights-only-activated'>")) {
+                    let hasHighlight = html.includes('<mark');
+                    if (hasHighlight) {
+                        hasHighlight = checkHasSubstantialHighlights(html)
+                    }
+                    if (!hasHighlight) {
+                        if (html.includes("<div class='highlights-only-enabled'>")) {
                             return html;
                         }
-                        return "<div class='highlights-only-activated'>" + html + '</div>';
+                        return "<div class='highlights-only-enabled'>" + html + '</div>';
                     }
 
                     html = html.replace(

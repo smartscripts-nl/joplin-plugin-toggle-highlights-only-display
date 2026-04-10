@@ -2,7 +2,7 @@
 	"manifest_version": 1,
 	"id": "com.joplin.plugin.toggle-highlights-only-display",
 	"app_min_version": "3.5",
-	"version": "1.0.11",
+	"version": "1.0.12",
 	"name": "Toggle highlights-only display",
 	"description": "This plugin can be used to toggle between highlights-only display or complete text of a note",
 	"author": "Alex Pot",
@@ -24,6 +24,10 @@
 			"label": "Default look of note with hilights-mode enabled"
 		},
 		{
+			"src": "screenshots/2b-no-highlights-notification-default-look.png",
+			"label": "Default look for pages without highlights, when highlights-only mode was enabled"
+		},
+		{
 			"src": "screenshots/3-highlights-only-with-user-css.png",
 			"label": "Look of note with user-defined CSS for highlights-mode enabled"
 		},
@@ -36,5 +40,8 @@
 		"desktop"
 	],
 	"icons": {},
-	"promo_tile": {}
+	"promo_tile": {
+		"src": "screenshots/promo-tile.png",
+		"label": "a page containing highlights"
+	}
 }
