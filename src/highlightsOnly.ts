@@ -28,6 +28,8 @@ module.exports = {
                 markdownIt.renderer.render = function (tokens, options, env) {
                     let html = defaultRender(tokens, options, env);
 
+                    console.log(context);
+
                     //* if no mark elements present, no content change needed:
                     let hasHighlight = html.includes('<mark');
                     if (hasHighlight) {
@@ -73,9 +75,7 @@ module.exports = {
                         }
                     );
 
-                    html = "<div class='highlights-only'>" + html + "</div>";
-
-                    return html;
+                    return "<div class='highlights-only'>" + html + "</div>";
                 };
             }
         };
