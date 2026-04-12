@@ -11,13 +11,13 @@ module.exports = {
                     // if no mark elements present, no content change needed:
                     if (!html.includes('<mark')) {
                         return html
-                            .replace(/<div class='highlights-only-activated'>/, '')
+                            .replace(/<div class='highlights-only-enabled'>/, '')
                             .replace(/<\/div>$/, '');
                     }
 
                     html = html
                         .replace(/<div class='highlights-only'>/, '')
-                        .replace(/<div class='highlights-only-activated'>/, '')
+                        .replace(/<div class='highlights-only-enabled'>/, '')
                         .replace(/<\/div>$/, '')
                         .replace(/<span class="hide-around-highlight">/g, '')
                         .replace(/<\/span><mark/g, '<mark')

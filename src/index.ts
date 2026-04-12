@@ -114,13 +114,13 @@ async function registerHighlightsOnlySettings() {
         }
     });
     await joplin.settings.registerSettings({
-        showHighlightsOnlyActivatedStatus: {
+        showHighlightsOnlyEnabledStatus: {
             value: true,
             type: SettingItemType.Bool,
             section: 'highlightsOnlyDisplaySection',
             public: true,
-            label: 'Show highlights-only activated status',
-            description: 'If you enable this setting, on pages without highlights, when highlights-only mode has been activated, that activated-status will be shown by a tooltip at the top of the note.'
+            label: 'Show highlights-only enabled status',
+            description: 'If you enable this setting, on pages without highlights, when highlights-only mode has been enabled, that enabled-status will be shown by a tooltip at the top of the note.'
         }
     });
 }
@@ -128,15 +128,15 @@ async function registerHighlightsOnlySettings() {
 async function loadHighlightsOnlyCSS() {
     const installDir = await joplin.plugins.installationDir();
 
-    //! here we load default CSS for .highlights-only-activated:
-    const showHighlightsOnlyModeActivated = await joplin.settings.value('showHighlightsOnlyActivatedStatus');
-    if (showHighlightsOnlyModeActivated) {
-        const showActivatedFilePath = installDir + '/show-highlights-only-activated.css';
-        await (joplin as any).window.loadNoteCssFile(showActivatedFilePath);
+    //! here we load default CSS for .highlights-only-enabled:
+    const showHighlightsOnlyModeEnabled = await joplin.settings.value('showHighlightsOnlyEnabledStatus');
+    if (showHighlightsOnlyModeEnabled) {
+        const showEnabledFilePath = installDir + '/show-highlights-only-enabled.css';
+        await (joplin as any).window.loadNoteCssFile(showEnabledFilePath);
     }
 
     //* --- load CSS from custom user stylesheet highlights-only.css ---
-    //! in this user stylesheet you can overrule the lay-out of .highlights-only-activated:
+    //! in this user stylesheet you can overrule the lay-out of .highlights-only-enabled:
     const noteCssFilePath = installDir + '/highlights-only.css';
     await (joplin as any).window.loadNoteCssFile(noteCssFilePath);
 
