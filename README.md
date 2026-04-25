@@ -137,3 +137,20 @@
     border-radius: 4px;
 }
 ```
+
+* In your custom stylesheet, you can also style markings in blockquotes (set with quotes-sign in the editor toolbar). In this way you can mark texts which contain the crux c.q. the summary of an article. By default, if this feature was enabled in the plug-in settings, they will have a tomato background color, to make them stand out from the other, "normal" text marks. The default CSS for these marks is:
+
+```CSS
+.highlights-only blockquote mark {
+    background: tomato;
+    color: black;
+}
+
+.highlights-only blockquote:has(mark) {
+    opacity: 0.7;
+}
+
+.highlights-only blockquote mark a, .highlights-only blockquote mark a:visited {
+    color: #fff176;
+}
+```
