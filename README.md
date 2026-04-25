@@ -143,6 +143,7 @@
 ```CSS
 .highlights-only blockquote mark {
     background: tomato;
+    color: black;
 }
 
 .highlights-only blockquote:has(mark) {

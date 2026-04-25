@@ -63,6 +63,16 @@ async function registerHighlightsOnlySettings() {
         }
     });
     await joplin.settings.registerSettings({
+        supportSummaryMarks: {
+            value: true,
+            type: SettingItemType.Bool,
+            section: 'highlightsOnlyDisplaySection',
+            public: true,
+            label: 'Support summary-marks',
+            description: 'If enabled, in highlights-only display mode, marks inside blockquotes will be treated as the crux or summaries of the note. They will be marked with the backgroundcolor tomato (but user can style this; see README).'
+        }
+    });
+    await joplin.settings.registerSettings({
         highlightsOnlyHotkey: {
             value: "H",
             type: SettingItemType.String,
@@ -157,6 +167,11 @@ async function loadHighlightsOnlyCSS() {
     if (hideImages) {
         const hideImagesFilePath = installDir + '/hide-images.css';
         await (joplin as any).window.loadNoteCssFile(hideImagesFilePath);
+    }
+    const summaryMarks = await joplin.settings.value('supportSummaryMarks');
+    if (summaryMarks) {
+        const summaryMarksFilePath = installDir + '/summary-colors.css';
+        await (joplin as any).window.loadNoteCssFile(summaryMarksFilePath);
     }
 }
 
