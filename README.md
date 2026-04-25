@@ -3,7 +3,7 @@
 * With the eye-button which this plugin adds to the Joplin notebar, you can toggle between highlights-only display, or display of the entire note text.
 * If a note doesn't contain any highlights at all, the note text will always be shown, even when highlights-only mode has been enabled.
 * When a note only contains shorter highlights (i.e.: less than 20 characters), the note will be treated as having no highlights. This allows the user to emphasize words, without triggering highlights-only mode because of these highlights.
-* You _can_ edit in highlights-only mode, but only inside highlighted texts. Don't use backspace or delete at the start or end of a highlighted text, because that might result in mangled content!
+* This plug-in is mainly meant to use for _viewing_ content/highlights. That being said, you _can_ edit in highlights-only mode, but only inside highlighted texts. Don't use backspace or delete at the start or end of a highlighted text, because that might result in mangled content!
 * The plugin has a section in the Joplin settings, _Highlights-only toggler_.
 * In this settings section you can also define a hotkey for toggling the highlights-only display.
 * The plugin uses custom CSS for displaying the highlights-only mode:
@@ -135,5 +135,21 @@
     margin-bottom: 11px;
     text-align: center;
     border-radius: 4px;
+}
+```
+
+* In your custom stylesheet, you can also style markings in blockquotes (set with quotes-sign in the editor toolbar). In this way you can mark texts which contain the crux c.q. the summary of an article. By default, if this feature was enabled in the plug-in settings, they will have a tomato background color, to make them stand out from the other, "normal" text marks. The default CSS for these marks is:
+
+```CSS
+.highlights-only blockquote mark {
+    background: tomato;
+}
+
+.highlights-only blockquote:has(mark) {
+    opacity: 0.7;
+}
+
+.highlights-only blockquote mark a, .highlights-only blockquote mark a:visited {
+    color: #fff176;
 }
 ```
