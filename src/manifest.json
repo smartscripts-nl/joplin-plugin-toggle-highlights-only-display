@@ -24,12 +24,12 @@
 			"label": "Default look of note with hilights-mode enabled"
 		},
 		{
-			"src": "screenshots/3-no-highlights-notification-default-look.png",
-			"label": "Default look for pages without highlights, when highlights-only mode was enabled"
+			"src": "screenshots/3-highlights-only-with-user-css.png",
+			"label": "Look of note with user-defined CSS for highlights-mode enabled"
 		},
 		{
-			"src": "screenshots/4-highlights-only-with-user-css.png",
-			"label": "Look of note with user-defined CSS for highlights-mode enabled"
+			"src": "screenshots/4-no-highlights-notification-default-look.png",
+			"label": "Default look for pages without highlights, when highlights-only mode was enabled"
 		},
 		{
 			"src": "screenshots/5-plugin-settings.png",
