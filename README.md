@@ -6,7 +6,15 @@
 * This plug-in is mainly meant to use for _viewing_ content/highlights. That being said, you _can_ edit in highlights-only mode, but only inside highlighted texts. Don't use backspace or delete at the start or end of a highlighted text, because that might result in mangled content!
 * The plugin has a section in the Joplin settings, _Highlights-only toggler_.
 * In this settings section you can also define a hotkey for toggling the highlights-only display.
-* The plugin uses custom CSS for displaying the highlights-only mode:
+
+## My other Joplin plug-ins
+
+* [Headings to Tabs](https://joplinapp.org/plugins/plugin/com.joplin.plugin.headings-to-tabs/ "A plug-in to convert h2 headings in the editor to tabs, for better navigation") ([repo](https://github.com/smartscripts-nl/joplin-headings-to-tabs))
+* [Read Distraction Free](https://joplinapp.org/plugins/plugin/com.joplin.plugin.read-distraction-free/ "A plug-in to load the current note in a distraction free new window") ([repo](https://github.com/smartscripts-nl/joplin-read-distraction-free))
+
+## CSS
+
+Toggle Highlights-only Display uses custom CSS for displaying the highlights-only mode:
 ```CSS
 .highlights-only p:not(:has(mark)), .highlights-only li:not(:has(mark)) {
   display: none;
