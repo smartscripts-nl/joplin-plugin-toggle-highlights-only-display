@@ -12,6 +12,22 @@
 * [Headings to Tabs](https://joplinapp.org/plugins/plugin/com.joplin.plugin.headings-to-tabs/ "A plug-in to convert h2 headings in the editor to tabs, for better navigation") ([repo](https://github.com/smartscripts-nl/joplin-headings-to-tabs))
 * [Read Distraction Free](https://joplinapp.org/plugins/plugin/com.joplin.plugin.read-distraction-free/ "A plug-in to load the current note in a distraction free new window") ([repo](https://github.com/smartscripts-nl/joplin-read-distraction-free))
 
+## Build from source
+
+You’ll need Node.js and npm. The build was verified with Node.js 24.13.1 and npm 11.19.0.
+
+Clone the repository and run these commands from its root directory:
+
+```bash
+npm ci --ignore-scripts
+npm run dist
+```
+
+The build creates `publish/com.joplin.plugin.toggle-highlights-only-display.jpl`.
+
+To install the build in Joplin Desktop, open **Settings → Plugins**, choose **Install from file**, select the `.jpl`
+file, and restart Joplin.
+
 ## CSS
 
 Toggle Highlights-only Display uses custom CSS for displaying the highlights-only mode:
